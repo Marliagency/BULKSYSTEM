@@ -1,0 +1,13 @@
+{
+  "name": "bulk-system",
+  "version": "1.0.0",
+  "description": "Sistema visual para hardgainers. Sin contar calorías.",
+  "scripts": {
+    "dev": "npx serve landing",
+    "dev:dashboard": "npx serve dashboard",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["hardgainer", "fitness", "weight-gain", "notion"],
+  "license": "UNLICENSED",
+  "private": true
+}

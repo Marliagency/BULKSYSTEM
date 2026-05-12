@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk System — Sube de peso sin pensar qué hacer</title>
+  <meta name="description" content="El sistema estructurado para hardgainers que no consiguen subir de peso. Sin contar calorías. Sin agobio. Solo resultados.">
+  <meta property="og:title" content="Bulk System — Sube de peso sin pensar qué hacer">
+  <meta property="og:description" content="El sistema visual y diario para hardgainers. Sin contar calorías. Sin improvisar.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       SECCIÓN 1: NAVBAR
+  ============================================================ -->
+  <nav id="navbar">
+    <a href="#hero" class="logo">BULK <span>SYSTEM</span></a>
+
+    <ul class="nav-links">
+      <li><a href="#how-it-works">Cómo funciona</a></li>
+      <li><a href="#pricing">Precio</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <button class="btn-primary" onclick="scrollToSection('pricing')">Empezar ahora →</button>
+    </div>
+
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="#how-it-works" onclick="closeMobileMenu()">Cómo funciona</a>
+    <a href="#pricing" onclick="closeMobileMenu()">Precio</a>
+    <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+    <a href="#pricing" onclick="closeMobileMenu()" style="color: var(--color-accent); font-weight: 600;">Empezar ahora →</a>
+  </div>
+
+  <!-- ============================================================
+       SECCIÓN 2: HERO
+  ============================================================ -->
+  <section id="hero" class="hero-noise">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+
+    <div class="container">
+      <div class="hero-content hero-animate">
+        <div class="hero-badge">
+          <span class="badge">⚡ Sistema para hardgainers</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Por fin un <span class="accent">sistema</span> que<br>
+          te dice exactamente<br>
+          qué hacer cada día
+        </h1>
+
+        <p class="hero-subheadline">
+          Sin contar calorías. Sin improvisar. Sin motivación forzada.<br>
+          Bulk System es la herramienta visual que convierte tu objetivo
+          de subir de peso en un sistema que puedes seguir hoy mismo.
+        </p>
+
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick="scrollToSection('pricing')">Quiero empezar →</button>
+          <button class="btn-secondary" onclick="scrollToSection('how-it-works')">Ver cómo funciona</button>
+        </div>
+
+        <div class="hero-social-proof">
+          <span>🔥</span>
+          <span>Más de 200 personas ya siguen el sistema</span>
+          <span class="dot-sep"></span>
+          <span>Acceso inmediato</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-mockup-container">
+          <div class="dashboard-mockup" style="max-width:100%">
+            <div class="dashboard-topbar">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+              <span class="dashboard-topbar-title">bulk-system · dashboard</span>
+            </div>
+            <!-- Mini preview of dashboard for hero -->
+            <div style="padding: var(--space-6); display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap: var(--space-3);">
+              <div class="metric-card">
+                <div class="metric-value">71.2</div>
+                <div class="metric-label">Peso (kg)</div>
+                <div class="metric-delta">+0.4 ▲</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-value">75</div>
+                <div class="metric-label">Objetivo (kg)</div>
+                <div class="metric-delta">−3.8 restante</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-value">3/8</div>
+                <div class="metric-label">Semanas</div>
+                <div class="metric-delta">37% ████░░░</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-value">12</div>
+                <div class="metric-label">Racha (días)</div>
+                <div class="metric-delta">🔥 Activo</div>
+              </div>
+            </div>
+            <div style="padding: 0 var(--space-6) var(--space-6); display:grid; grid-template-columns: 1.5fr 1fr; gap: var(--space-4);">
+              <div class="checklist-card">
+                <div class="checklist-title">Check de hoy — Semana 3 · Día 4</div>
+                <div class="check-item done"><div class="check-box"></div><span class="check-text">Desayuno (08:00)</span></div>
+                <div class="check-item done"><div class="check-box"></div><span class="check-text">Entrenamiento upper body</span></div>
+                <div class="check-item done"><div class="check-box"></div><span class="check-text">Batido post-entreno</span></div>
+                <div class="check-item"><div class="check-box"></div><span class="check-text">Comida principal</span></div>
+                <div class="check-item"><div class="check-box"></div><span class="check-text">Cena</span></div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap: var(--space-3);">
+                <div class="metric-highlight-card">
+                  <div class="metric-highlight-label">Esta semana</div>
+                  <div class="metric-highlight-value">+0.4 kg 📈</div>
+                </div>
+                <div class="today-progress-card">
+                  <div class="progress-label">
+                    <span>Progreso hoy</span>
+                    <span style="color:var(--color-accent)">3/5</span>
+                  </div>
+                  <div class="progress-bar-track">
+                    <div class="progress-bar-fill" style="width:60%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-mockup-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 3: BARRA DE CONFIANZA
+  ============================================================ -->
+  <section id="social-proof-bar">
+    <div class="container">
+      <div class="metrics-grid">
+        <div class="metric-item" data-reveal>
+          <div class="metric-value" data-counter="200">+200</div>
+          <div class="metric-label">usuarios activos</div>
+        </div>
+        <div class="metric-item" data-reveal data-reveal-delay="1">
+          <div class="metric-value" data-counter="8">8 semanas</div>
+          <div class="metric-label">promedio de resultado</div>
+        </div>
+        <div class="metric-item" data-reveal data-reveal-delay="2">
+          <div class="metric-value">0</div>
+          <div class="metric-label">calorías que contar</div>
+        </div>
+        <div class="metric-item" data-reveal data-reveal-delay="3">
+          <div class="metric-value">1</div>
+          <div class="metric-label">dashboard todo en uno</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 4: EL PROBLEMA
+  ============================================================ -->
+  <section id="problem">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-reveal>El problema</div>
+        <h2 class="section-title" data-reveal data-reveal-delay="1">
+          ¿Has intentado ganar peso<br>y no has conseguido nada?
+        </h2>
+        <p class="section-subtitle" data-reveal data-reveal-delay="2">
+          No es tu culpa. Es que nadie te ha dado un sistema real.
+        </p>
+      </div>
+
+      <div class="problem-grid">
+        <div class="problem-card" data-reveal>
+          <div class="problem-icon">🔄</div>
+          <div class="problem-title">"Empiezas fuerte y lo dejas a las 2 semanas"</div>
+          <div class="problem-desc">
+            Porque no tienes un sistema visual que seguir.
+            Dependes de la motivación, que siempre falla.
+          </div>
+        </div>
+        <div class="problem-card" data-reveal data-reveal-delay="1">
+          <div class="problem-icon">📊</div>
+          <div class="problem-title">"No sabes si estás progresando o no"</div>
+          <div class="problem-desc">
+            Sin métricas claras, es imposible ajustar.
+            Te pierdes entre apps, notas y PDFs.
+          </div>
+        </div>
+        <div class="problem-card" data-reveal data-reveal-delay="2">
+          <div class="problem-icon">🍽️</div>
+          <div class="problem-title">"Contar calorías es insoportable"</div>
+          <div class="problem-desc">
+            No tienes tiempo ni ganas de pesar cada gramo.
+            Y cuando lo dejas, vuelves al punto de partida.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 5: LA SOLUCIÓN
+  ============================================================ -->
+  <section id="solution">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-reveal>La solución</div>
+        <h2 class="section-title" data-reveal data-reveal-delay="1">
+          Bulk System: tu sistema diario<br>para subir de peso sin agobio
+        </h2>
+        <p class="section-subtitle" data-reveal data-reveal-delay="2">
+          No es una app de fitness más. Es un dashboard visual y estructurado
+          que te dice exactamente qué comer, cómo entrenar y cómo progresar
+          cada semana — sin que tengas que pensar.
+        </p>
+      </div>
+
+      <div class="pilares-grid">
+        <div class="pilar-card" data-reveal>
+          <div class="pilar-number">01 / PILAR</div>
+          <div class="pilar-title">Plan de comidas visual</div>
+          <div class="pilar-desc">
+            Semanas de comidas organizadas. Sin pesar nada.
+            Basado en porciones visuales y hábitos reales.
+          </div>
+        </div>
+        <div class="pilar-card" data-reveal data-reveal-delay="1">
+          <div class="pilar-number">02 / PILAR</div>
+          <div class="pilar-title">Rutina de entrenamiento progresiva</div>
+          <div class="pilar-desc">
+            Ejercicios claros con progresión automática.
+            Sabes exactamente cuánto levantar cada día.
+          </div>
+        </div>
+        <div class="pilar-card" data-reveal data-reveal-delay="2">
+          <div class="pilar-number">03 / PILAR</div>
+          <div class="pilar-title">Seguimiento diario sin fricción</div>
+          <div class="pilar-desc">
+            Check diario de 2 minutos. Peso semanal.
+            Gráfica de progreso que te motiva a continuar.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 6: DASHBOARD MOCKUP INTERACTIVO
+  ============================================================ -->
+  <section id="dashboard-preview">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-reveal>El producto</div>
+        <h2 class="section-title" data-reveal data-reveal-delay="1">
+          Tu dashboard en acción
+        </h2>
+        <p class="section-subtitle" data-reveal data-reveal-delay="2">
+          Explora las cuatro vistas principales. Esto es exactamente lo que verás cada día.
+        </p>
+      </div>
+
+      <div class="dashboard-preview-wrapper" data-reveal data-reveal-delay="3">
+        <div class="dashboard-preview-glow"></div>
+        <div class="dashboard-mockup">
+          <div class="dashboard-topbar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="dashboard-topbar-title">bulk-system · dashboard · marcos@email.com</span>
+          </div>
+
+          <div class="dashboard-tabs">
+            <button class="dashboard-tab active" data-tab="today">📅 Hoy</button>
+            <button class="dashboard-tab" data-tab="progress">📈 Progreso</button>
+            <button class="dashboard-tab" data-tab="training">🏋️ Entrenamiento</button>
+            <button class="dashboard-tab" data-tab="nutrition">🍽️ Nutrición</button>
+          </div>
+
+          <div class="dashboard-content">
+
+            <!-- TAB: HOY -->
+            <div class="tab-panel active" id="tab-today">
+              <div class="today-header">
+                <div class="today-greeting">Buenos días, Marcos 👋</div>
+                <div class="today-subheader">Martes, 13 de mayo · Semana 3 · Día 4 de 7</div>
+              </div>
+
+              <!-- Quick metrics -->
+              <div style="display:grid; grid-template-columns: repeat(4,1fr); gap: var(--space-3); margin-bottom: var(--space-4);">
+                <div class="metric-card">
+                  <div class="metric-value">71.2</div>
+                  <div class="metric-label">Peso hoy (kg)</div>
+                  <div class="metric-delta">+0.4 ▲</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-value">75</div>
+                  <div class="metric-label">Objetivo (kg)</div>
+                  <div class="metric-delta">−3.8 kg</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-value" style="font-size:1.5rem">3 / 8</div>
+                  <div class="metric-label">Semanas</div>
+                  <div class="metric-delta">████░░░░</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-value">12</div>
+                  <div class="metric-label">Racha (días)</div>
+                  <div class="metric-delta">🔥 Activo</div>
+                </div>
+              </div>
+
+              <div class="today-grid">
+                <div class="today-progress-card" style="grid-column: 1/-1">
+                  <div class="progress-label">
+                    <span>Progreso de hoy</span>
+                    <span style="color:var(--color-accent); font-family:var(--font-mono)">3 de 5 completados — 60%</span>
+                  </div>
+                  <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="heroProgressBar" style="width:60%"></div>
+                  </div>
+                </div>
+
+                <div class="checklist-card">
+                  <div class="checklist-title">Tu check de hoy</div>
+                  <div class="check-item done" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Desayuno (08:00)</span></div>
+                  <div class="check-item done" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Entrenamiento upper body (11:30)</span></div>
+                  <div class="check-item done" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Batido post-entreno (12:15)</span></div>
+                  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Comida principal</span></div>
+                  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Cena</span></div>
+                </div>
+
+                <div class="metric-highlight-card" style="grid-column: 1">
+                  <div class="metric-highlight-label">Esta semana</div>
+                  <div class="metric-highlight-value">+0.4 kg 📈</div>
+                  <div style="font-size:var(--text-xs); color:var(--color-text-muted); margin-top:var(--space-2)">
+                    Meta: +0.5 kg/semana · Vas bien
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB: PROGRESO -->
+            <div class="tab-panel" id="tab-progress">
+              <div class="chart-header">
+                <div>
+                  <div class="chart-title">Evolución del peso</div>
+                  <div style="font-size:var(--text-sm); color:var(--color-text-muted); margin-top:4px">Semanas 1–8 · Objetivo: 75 kg</div>
+                </div>
+                <div class="chart-stats">
+                  <div class="chart-stat">
+                    <div class="chart-stat-value">+3.0 kg</div>
+                    <div class="chart-stat-label">ganado total</div>
+                  </div>
+                  <div class="chart-stat">
+                    <div class="chart-stat-value">71.2</div>
+                    <div class="chart-stat-label">kg actuales</div>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-container">
+                <svg id="weightChart" class="chart-svg" viewBox="0 0 800 200" preserveAspectRatio="none"></svg>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-top:var(--space-2); padding: 0 8px;">
+                <span style="font-family:var(--font-mono); font-size:var(--text-xs); color:var(--color-text-muted)">S1</span>
+                <span style="font-family:var(--font-mono); font-size:var(--text-xs); color:var(--color-text-muted)">S2</span>
+                <span style="font-family:var(--font-mono); font-size:var(--text-xs); color:var(--color-text-muted)">S3</span>
+                <span style="font-family:var(--font-mono); font-size:var(--text-xs); color:var(--color-text-muted)">S4</span>
+                <span style="font-family:var(--font-mono); font-size:var(--text-xs); color:var(--color-text-muted)">S5</span>
+                <span style="font-family:var(--font-mono); font-size:var(--text-xs); color:var(--color-text-muted)">S6</span>
+                <span style="font-family:var(--font-mono); font-size:var(--text-xs); color:var(--color-text-muted)">S7</span>
+                <span style="font-family:var(--font-mono); font-size:var(--text-xs); color:var(--color-text-muted)">S8</span>
+              </div>
+            </div>
+
+            <!-- TAB: ENTRENAMIENTO -->
+            <div class="tab-panel" id="tab-training">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-4)">
+                <div>
+                  <div class="chart-title">Upper Body — Sesión A</div>
+                  <div style="font-size:var(--text-sm); color:var(--color-text-muted); margin-top:4px">Semana 3 · Martes 13 mayo</div>
+                </div>
+                <div class="badge">Hoy</div>
+              </div>
+              <table class="workout-table">
+                <thead>
+                  <tr>
+                    <th>Ejercicio</th>
+                    <th>Sets</th>
+                    <th>Reps</th>
+                    <th>Peso</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Press de banca</td>
+                    <td>4</td>
+                    <td>8</td>
+                    <td class="weight-cell">65 kg</td>
+                    <td><span style="color:var(--color-accent); font-size:var(--text-xs)">✓ Hecho</span></td>
+                  </tr>
+                  <tr>
+                    <td>Remo con barra</td>
+                    <td>4</td>
+                    <td>8</td>
+                    <td class="weight-cell">60 kg</td>
+                    <td><span style="color:var(--color-accent); font-size:var(--text-xs)">✓ Hecho</span></td>
+                  </tr>
+                  <tr>
+                    <td>Press militar</td>
+                    <td>3</td>
+                    <td>10</td>
+                    <td class="weight-cell">40 kg</td>
+                    <td><span style="color:var(--color-text-muted); font-size:var(--text-xs)">Pendiente</span></td>
+                  </tr>
+                  <tr>
+                    <td>Curl de bíceps</td>
+                    <td>3</td>
+                    <td>12</td>
+                    <td class="weight-cell">20 kg</td>
+                    <td><span style="color:var(--color-text-muted); font-size:var(--text-xs)">Pendiente</span></td>
+                  </tr>
+                  <tr>
+                    <td>Tríceps en polea</td>
+                    <td>3</td>
+                    <td>12</td>
+                    <td class="weight-cell">25 kg</td>
+                    <td><span style="color:var(--color-text-muted); font-size:var(--text-xs)">Pendiente</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="margin-top:var(--space-4); padding:var(--space-3) var(--space-4); background:var(--color-bg-elevated); border-radius:var(--radius-sm); font-size:var(--text-xs); color:var(--color-accent);">
+                💡 La próxima semana: +2.5 kg en press de banca si completas los 4×8
+              </div>
+            </div>
+
+            <!-- TAB: NUTRICIÓN -->
+            <div class="tab-panel" id="tab-nutrition">
+              <div style="margin-bottom:var(--space-4)">
+                <div class="chart-title">Plan de comidas de hoy</div>
+                <div style="font-size:var(--text-sm); color:var(--color-text-muted); margin-top:4px">Martes 13 mayo · Sin contar calorías</div>
+              </div>
+              <div class="nutrition-meals">
+                <div class="meal-card">
+                  <div class="meal-icon">🌅</div>
+                  <div>
+                    <div class="meal-info-title">Desayuno (08:00)</div>
+                    <div class="meal-info-desc">Avena con leche entera + 2 huevos revueltos + plátano grande</div>
+                  </div>
+                  <div style="margin-left:auto; flex-shrink:0">
+                    <span style="font-size:var(--text-xs); color:var(--color-accent); font-family:var(--font-mono)">✓ Hecho</span>
+                  </div>
+                </div>
+                <div class="meal-card">
+                  <div class="meal-icon">🌞</div>
+                  <div>
+                    <div class="meal-info-title">Comida (13:30)</div>
+                    <div class="meal-info-desc">Arroz blanco (2 puños) + pollo a la plancha (1 palma) + verduras salteadas</div>
+                  </div>
+                  <div style="margin-left:auto; flex-shrink:0">
+                    <span style="font-size:var(--text-xs); color:var(--color-text-muted); font-family:var(--font-mono)">Pendiente</span>
+                  </div>
+                </div>
+                <div class="meal-card">
+                  <div class="meal-icon">🌙</div>
+                  <div>
+                    <div class="meal-info-title">Cena (20:30)</div>
+                    <div class="meal-info-desc">Tortilla de 3 huevos + 2 rebanadas de pan + fruta de temporada</div>
+                  </div>
+                  <div style="margin-left:auto; flex-shrink:0">
+                    <span style="font-size:var(--text-xs); color:var(--color-text-muted); font-family:var(--font-mono)">Pendiente</span>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:var(--space-4); padding:var(--space-3) var(--space-4); background:var(--color-bg-elevated); border-radius:var(--radius-sm); font-size:var(--text-xs); color:var(--color-text-secondary);">
+                🍽️ Porciones visuales — no peses nada. Una palma de proteína, dos puños de carbohidrato.
+              </div>
+            </div>
+
+          </div><!-- end dashboard-content -->
+        </div><!-- end dashboard-mockup -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 7: CÓMO FUNCIONA
+  ============================================================ -->
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-reveal>El proceso</div>
+        <h2 class="section-title" data-reveal data-reveal-delay="1">
+          En marcha en menos de 10 minutos
+        </h2>
+      </div>
+
+      <div class="steps-container">
+        <div class="step" data-reveal>
+          <div class="step-line"></div>
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <div class="step-title">Compras el acceso</div>
+            <div class="step-desc">
+              Pago único. Acceso inmediato. Sin suscripciones sorpresa.
+              Un solo pago, todo incluido.
+            </div>
+          </div>
+        </div>
+
+        <div class="step" data-reveal data-reveal-delay="1">
+          <div class="step-line"></div>
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <div class="step-title">Recibes tu dashboard personalizado</div>
+            <div class="step-desc">
+              Te enviamos tu Notion configurado con tus datos iniciales.
+              Peso, objetivo y semana de inicio ya listos.
+            </div>
+          </div>
+        </div>
+
+        <div class="step" data-reveal data-reveal-delay="2">
+          <div class="step-line"></div>
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <div class="step-title">Sigues el sistema día a día</div>
+            <div class="step-desc">
+              Abres el dashboard, ves qué toca, lo haces.
+              2 minutos de check diario. Eso es todo.
+            </div>
+          </div>
+        </div>
+
+        <div class="step" data-reveal data-reveal-delay="3">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <div class="step-title">Ves resultados en semanas, no meses</div>
+            <div class="step-desc">
+              El sistema ajusta la progresión automáticamente.
+              Tú solo tienes que seguirlo.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 8: BENEFICIOS
+  ============================================================ -->
+  <section id="benefits">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-reveal>Qué cambia</div>
+        <h2 class="section-title" data-reveal data-reveal-delay="1">
+          Lo que cambia cuando tienes<br>un sistema real
+        </h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card" data-reveal>
+          <div class="benefit-icon">🍽️</div>
+          <div class="benefit-title">Sabes exactamente qué comer</div>
+          <div class="benefit-desc">
+            Sin improvisar. Sin buscar recetas.
+            Tu plan está listo cada semana.
+          </div>
+        </div>
+        <div class="benefit-card" data-reveal data-reveal-delay="1">
+          <div class="benefit-icon">📈</div>
+          <div class="benefit-title">Tu entrenamiento progresa solo</div>
+          <div class="benefit-desc">
+            El sistema ajusta los pesos y las reps.
+            Tú ejecutas, el sistema piensa.
+          </div>
+        </div>
+        <div class="benefit-card" data-reveal data-reveal-delay="2">
+          <div class="benefit-icon">📊</div>
+          <div class="benefit-title">Ves tu progreso en tiempo real</div>
+          <div class="benefit-desc">
+            Gráfica de peso semanal.
+            Nunca más "¿estoy mejorando o no?"
+          </div>
+        </div>
+        <div class="benefit-card" data-reveal data-reveal-delay="3">
+          <div class="benefit-icon">🚫</div>
+          <div class="benefit-title">Sin contar una sola caloría</div>
+          <div class="benefit-desc">
+            Sistema de porciones visuales.
+            Come más sin obsesionarte con números.
+          </div>
+        </div>
+        <div class="benefit-card" data-reveal data-reveal-delay="4">
+          <div class="benefit-icon">🔥</div>
+          <div class="benefit-title">Hábito construido en 3 semanas</div>
+          <div class="benefit-desc">
+            El check diario de 2 minutos
+            hace que sea imposible dejarlo.
+          </div>
+        </div>
+        <div class="benefit-card" data-reveal data-reveal-delay="5">
+          <div class="benefit-icon">⚡</div>
+          <div class="benefit-title">Un sistema que evoluciona contigo</div>
+          <div class="benefit-desc">
+            Las semanas se ajustan a tu progreso.
+            No es un PDF estático. Es un sistema vivo.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 9: PRICING
+  ============================================================ -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-reveal>Precio</div>
+        <h2 class="section-title" data-reveal data-reveal-delay="1">
+          Acceso completo a Bulk System
+        </h2>
+        <p class="section-subtitle" data-reveal data-reveal-delay="2">
+          Un único pago. Sin renovaciones. Sin sorpresas.
+        </p>
+      </div>
+
+      <div class="pricing-wrapper" data-reveal data-reveal-delay="3">
+        <div class="pricing-card">
+          <div class="pricing-badge">Acceso completo</div>
+          <div class="pricing-title">BULK SYSTEM — PAGO ÚNICO</div>
+          <div class="pricing-price">
+            <span class="pricing-currency">€</span>
+            <span class="pricing-amount">47</span>
+          </div>
+          <div class="pricing-billing">Pago único · Sin renovaciones</div>
+
+          <div class="pricing-divider"></div>
+
+          <div class="pricing-features">
+            <div class="pricing-feature">
+              <div class="pricing-feature-check">✓</div>
+              <span>Dashboard Notion completo y personalizado</span>
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-check">✓</div>
+              <span>Plan de comidas visual — 8 semanas</span>
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-check">✓</div>
+              <span>Rutina progresiva de entrenamiento — 8 semanas</span>
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-check">✓</div>
+              <span>Sistema de seguimiento diario</span>
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-check">✓</div>
+              <span>Soporte por email incluido</span>
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-check">✓</div>
+              <span>Actualizaciones incluidas para siempre</span>
+            </div>
+          </div>
+
+          <button class="btn-primary pricing-cta">Empezar ahora →</button>
+
+          <div class="pricing-security">
+            <span>🔒</span>
+            <span>Pago seguro via Stripe</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-guarantee" data-reveal>
+        <strong>Garantía de 14 días.</strong> Si no estás satisfecho, te devolvemos el dinero. Sin preguntas.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 10: TESTIMONIOS
+  ============================================================ -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-reveal>Resultados reales</div>
+        <h2 class="section-title" data-reveal data-reveal-delay="1">
+          Lo que dicen los que ya<br>siguen el sistema
+        </h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card" data-reveal>
+          <div class="testimonial-quote">
+            Llevaba 2 años intentando ganar peso sin resultado.
+            Con Bulk System subí 4 kg en 8 semanas. Lo mejor
+            es que no tuve que pensar nada — solo seguir el sistema.
+          </div>
+          <div class="testimonial-author">Marcos R.</div>
+          <div class="testimonial-meta">24 años · +4.2 kg en 8 semanas</div>
+        </div>
+        <div class="testimonial-card" data-reveal data-reveal-delay="1">
+          <div class="testimonial-quote">
+            Probé mil apps de fitness y siempre las dejaba.
+            Esta es diferente porque es visual, simple y funciona.
+            Ya no improviso. Sé exactamente qué hacer.
+          </div>
+          <div class="testimonial-author">Daniel F.</div>
+          <div class="testimonial-meta">21 años · +3.8 kg en 7 semanas</div>
+        </div>
+        <div class="testimonial-card" data-reveal data-reveal-delay="2">
+          <div class="testimonial-quote">
+            Lo que más me sorprendió es que no conté una sola
+            caloría. El sistema de porciones funciona de verdad.
+            Y el dashboard me mantiene motivado sin estrés.
+          </div>
+          <div class="testimonial-author">Alejandro M.</div>
+          <div class="testimonial-meta">26 años · +5.1 kg en 10 semanas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 11: FAQ
+  ============================================================ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-reveal>Preguntas frecuentes</div>
+        <h2 class="section-title" data-reveal data-reveal-delay="1">
+          Todo lo que necesitas saber
+        </h2>
+      </div>
+
+      <div class="faq-container" data-reveal data-reveal-delay="2">
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Necesito experiencia previa en el gimnasio?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              No. El sistema está diseñado para cualquier nivel.
+              Desde tu primera sesión, sabes exactamente qué hacer.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Tengo que contar calorías?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              No. Bulk System usa un sistema de porciones visual.
+              Come más sin obsesionarte con números.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Es compatible con cualquier gimnasio?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Sí. Los ejercicios están adaptados para gym estándar
+              y también para entrenamiento en casa con equipamiento básico.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Cuánto tiempo tengo que dedicarle al día?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              2 minutos para el check diario + tu entrenamiento habitual.
+              El sistema está diseñado para encajar en tu vida, no al revés.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Qué pasa si no tengo Notion?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Nada. Notion es gratuito. Te explicamos todo en 5 minutos.
+              No necesitas saber usarlo previamente.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Funciona si como de tupper o fuera de casa?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Sí. El plan de comidas está pensado para vida real.
+              Hay opciones para tupper, restaurante y días de mucha ocupación.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Qué pasa después de las 8 semanas?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Recibirás el plan de continuación. El sistema evoluciona
+              contigo para que no te estanques.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            ¿Puedo hablar con alguien si tengo dudas?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Sí. Soporte por email incluido. Respondemos en menos de 24h.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 12: CTA FINAL
+  ============================================================ -->
+  <section id="final-cta">
+    <div class="final-cta-glow"></div>
+    <div class="container">
+      <div class="final-cta-content">
+        <div class="section-label" data-reveal style="justify-content:center; margin-bottom:var(--space-6)">
+          La decisión es tuya
+        </div>
+        <h2 class="final-cta-title" data-reveal data-reveal-delay="1">
+          Deja de improvisar.<br>
+          Empieza a <span style="color:var(--color-accent)">progresar.</span>
+        </h2>
+        <p class="final-cta-subtitle" data-reveal data-reveal-delay="2">
+          Más de 200 personas ya siguen Bulk System.
+          La diferencia entre ellos y tú es que ellos tomaron la decisión.
+        </p>
+        <div data-reveal data-reveal-delay="3">
+          <button class="btn-primary" style="font-size:var(--text-lg); padding: 18px 40px;" onclick="scrollToSection('pricing')">
+            Quiero acceso ahora →
+          </button>
+        </div>
+        <div class="final-cta-microcopy" data-reveal data-reveal-delay="4">
+          <span>⚡ Acceso inmediato</span>
+          <span>💳 Pago único €47</span>
+          <span>🔒 Garantía 14 días</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">BULK <span>SYSTEM</span></div>
+        <div class="footer-links">
+          <a href="#how-it-works">Cómo funciona</a>
+          <a href="#pricing">Precio</a>
+          <a href="#faq">FAQ</a>
+          <a href="mailto:hola@bulksystem.es">Contacto</a>
+        </div>
+        <div class="footer-copy">© 2025 Bulk System · Hecho para hardgainers</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/animations.js"></script>
+  <script src="js/dashboard-demo.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

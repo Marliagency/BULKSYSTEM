@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk System — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============================================================
+       SIDEBAR
+  ============================================================ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">BULK <span>SYSTEM</span></div>
+
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">M</div>
+      <div>
+        <div class="sidebar-user-name">Marcos</div>
+        <div class="sidebar-user-meta">24 años · 71.2 kg</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-view="today">
+        <span class="nav-icon">🏠</span> Inicio
+      </button>
+      <button class="nav-item" data-view="today">
+        <span class="nav-icon">📅</span> Hoy
+      </button>
+      <button class="nav-item" data-view="progress">
+        <span class="nav-icon">📈</span> Progreso
+      </button>
+      <button class="nav-item" data-view="training">
+        <span class="nav-icon">🏋️</span> Entrenamiento
+      </button>
+      <button class="nav-item" data-view="nutrition">
+        <span class="nav-icon">🍽️</span> Nutrición
+      </button>
+      <button class="nav-item" data-view="settings">
+        <span class="nav-icon">⚙️</span> Configuración
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      Semana 3 de 8<br>
+      <span style="color: var(--color-accent)">████░░░░</span> 37%
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       MAIN AREA
+  ============================================================ -->
+  <main class="main">
+    <div class="main-header">
+      <div class="main-header-title" id="pageTitle">Hoy</div>
+      <div class="main-header-date">Martes, 13 de mayo de 2025 · Semana 3 · Día 4</div>
+    </div>
+
+    <!-- ==================== VIEW: HOY ==================== -->
+    <div class="main-content active" id="view-today">
+
+      <div class="page-header">
+        <div class="page-greeting">Buenos días, Marcos 👋</div>
+        <div class="page-subheader">Martes, 13 de mayo · Semana 3 · Día 4 de 7</div>
+      </div>
+
+      <!-- Quick metrics -->
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-card-value">71.2</div>
+          <div class="metric-card-label">Peso hoy (kg)</div>
+          <div class="metric-card-delta">+0.4 ▲ esta semana</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value">75</div>
+          <div class="metric-card-label">Objetivo (kg)</div>
+          <div class="metric-card-delta">−3.8 kg restante</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value" style="font-size:1.5rem">3 / 8</div>
+          <div class="metric-card-label">Semanas del programa</div>
+          <div class="metric-card-delta">████░░░░ 37%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value">12</div>
+          <div class="metric-card-label">Racha (días)</div>
+          <div class="metric-card-delta">🔥 Sigue así</div>
+        </div>
+      </div>
+
+      <!-- Progress + Checklist -->
+      <div class="content-grid" style="margin-bottom: var(--space-6)">
+        <div class="card">
+          <div class="card-title">Check de hoy</div>
+
+          <div class="progress-section">
+            <div class="progress-meta">
+              <span>Progreso del día</span>
+              <span id="checkProgress" style="color:var(--color-accent); font-family:var(--font-mono)">3 / 5 — 60%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="checkBar" style="width:60%"></div>
+            </div>
+          </div>
+
+          <div id="checklistToday">
+            <div class="check-item done" onclick="toggleCheckDash(this)">
+              <div class="check-box"></div>
+              <span class="check-text">Desayuno</span>
+              <span class="check-time">08:00</span>
+            </div>
+            <div class="check-item done" onclick="toggleCheckDash(this)">
+              <div class="check-box"></div>
+              <span class="check-text">Entrenamiento upper body</span>
+              <span class="check-time">11:30</span>
+            </div>
+            <div class="check-item done" onclick="toggleCheckDash(this)">
+              <div class="check-box"></div>
+              <span class="check-text">Batido post-entreno</span>
+              <span class="check-time">12:15</span>
+            </div>
+            <div class="check-item" onclick="toggleCheckDash(this)">
+              <div class="check-box"></div>
+              <span class="check-text">Comida principal</span>
+              <span class="check-time">13:30</span>
+            </div>
+            <div class="check-item" onclick="toggleCheckDash(this)">
+              <div class="check-box"></div>
+              <span class="check-text">Cena</span>
+              <span class="check-time">20:30</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap: var(--space-4)">
+          <div class="highlight-metric">
+            <div class="highlight-label">Esta semana</div>
+            <div class="highlight-value">+0.4 kg 📈</div>
+            <div class="highlight-sub">Meta: +0.5 kg/semana · Vas por buen camino</div>
+          </div>
+
+          <div class="highlight-metric" style="border-color:rgba(255,184,48,0.2)">
+            <div class="highlight-label">Racha actual</div>
+            <div class="highlight-value" style="color: #FFB830">🔥 12 días</div>
+            <div class="highlight-sub">Tu mejor racha: 14 días</div>
+          </div>
+
+          <div class="card" style="flex:1">
+            <div class="card-title">Días de la semana</div>
+            <div class="week-days">
+              <div class="day-dot done" title="Lunes"></div>
+              <div class="day-dot done" title="Martes"></div>
+              <div class="day-dot done" title="Miércoles"></div>
+              <div class="day-dot today" title="Jueves"></div>
+              <div class="day-dot" title="Viernes"></div>
+              <div class="day-dot" title="Sábado"></div>
+              <div class="day-dot" title="Domingo"></div>
+            </div>
+            <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top: var(--space-3)">
+              Lun · Mar · Mié · <span style="color:var(--color-accent)">Jue</span> · Vie · Sáb · Dom
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Today's workout & meals preview -->
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-title">Entrenamiento de hoy</div>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: var(--space-4)">
+            <div>
+              <div style="font-size:1rem; font-weight:700; font-family:var(--font-display); color:var(--color-text-primary)">Upper Body — Sesión A</div>
+              <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:2px">5 ejercicios · ~45 min</div>
+            </div>
+            <span class="badge">Hoy</span>
+          </div>
+          <table class="workout-table">
+            <thead><tr><th>Ejercicio</th><th>Sets×Reps</th><th>Peso</th><th>Estado</th></tr></thead>
+            <tbody>
+              <tr><td>Press de banca</td><td>4×8</td><td class="weight-cell">65 kg</td><td class="status-done">✓ Hecho</td></tr>
+              <tr><td>Remo con barra</td><td>4×8</td><td class="weight-cell">60 kg</td><td class="status-done">✓ Hecho</td></tr>
+              <tr><td>Press militar</td><td>3×10</td><td class="weight-cell">40 kg</td><td class="status-pending">Pendiente</td></tr>
+              <tr><td>Curl de bíceps</td><td>3×12</td><td class="weight-cell">20 kg</td><td class="status-pending">Pendiente</td></tr>
+              <tr><td>Tríceps en polea</td><td>3×12</td><td class="weight-cell">25 kg</td><td class="status-pending">Pendiente</td></tr>
+            </tbody>
+          </table>
+          <div class="tip-box">💡 Semana 4: +2.5 kg en press de banca si completas todos los sets</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Comidas de hoy</div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌅</div>
+            <div>
+              <div class="meal-title">Desayuno (08:00)</div>
+              <div class="meal-desc">Avena con leche + 2 huevos + plátano</div>
+            </div>
+            <div class="meal-status done">✓ Hecho</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌞</div>
+            <div>
+              <div class="meal-title">Comida (13:30)</div>
+              <div class="meal-desc">Arroz + pollo + verduras salteadas</div>
+            </div>
+            <div class="meal-status pending">Pendiente</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌙</div>
+            <div>
+              <div class="meal-title">Cena (20:30)</div>
+              <div class="meal-desc">Tortilla de 3 huevos + pan + fruta</div>
+            </div>
+            <div class="meal-status pending">Pendiente</div>
+          </div>
+          <div class="tip-box">🍽️ Porciones visuales — una palma de proteína, dos puños de carbohidrato</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW: PROGRESO ==================== -->
+    <div class="main-content" id="view-progress">
+      <div class="page-header">
+        <div class="page-greeting">Tu progreso 📈</div>
+        <div class="page-subheader">Semanas 1–8 · Objetivo: 75 kg</div>
+      </div>
+
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-card-value">+3.0</div>
+          <div class="metric-card-label">kg ganados</div>
+          <div class="metric-card-delta">Desde el inicio</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value">+0.4</div>
+          <div class="metric-card-label">kg esta semana</div>
+          <div class="metric-card-delta">Meta: +0.5/sem</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value">3.8</div>
+          <div class="metric-card-label">kg para el objetivo</div>
+          <div class="metric-card-delta">~8 semanas</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value">37%</div>
+          <div class="metric-card-label">completado</div>
+          <div class="metric-card-delta">Semana 3 de 8</div>
+        </div>
+      </div>
+
+      <div class="card content-grid single" style="margin-bottom: var(--space-6)">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: var(--space-6)">
+            <div class="card-title">Evolución del peso</div>
+            <div style="display:flex; gap:var(--space-6)">
+              <div style="text-align:right">
+                <div style="font-family:var(--font-mono); font-size:1.25rem; color:var(--color-accent)">+3.0 kg</div>
+                <div style="font-size:0.75rem; color:var(--color-text-muted)">ganado</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-family:var(--font-mono); font-size:1.25rem; color:var(--color-text-primary)">71.2</div>
+                <div style="font-size:0.75rem; color:var(--color-text-muted)">kg actuales</div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <svg id="dashboardWeightChart" class="chart-svg" viewBox="0 0 900 220" preserveAspectRatio="none"></svg>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding: 0 12px; margin-top: var(--space-2)">
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S1</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S2</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S3</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S4</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S5</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S6</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S7</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weekly breakdown -->
+      <div class="card">
+        <div class="card-title">Historial semanal</div>
+        <table class="workout-table">
+          <thead>
+            <tr>
+              <th>Semana</th>
+              <th>Peso (kg)</th>
+              <th>Cambio</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Semana 1</td><td class="weight-cell">68.2</td><td>—</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 2</td><td class="weight-cell">68.6</td><td style="color:var(--color-accent)">+0.4</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 3</td><td class="weight-cell">69.1</td><td style="color:var(--color-accent)">+0.5</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 4</td><td class="weight-cell">69.5</td><td style="color:var(--color-accent)">+0.4</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 5</td><td class="weight-cell">70.0</td><td style="color:var(--color-accent)">+0.5</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 6</td><td class="weight-cell">70.4</td><td style="color:var(--color-accent)">+0.4</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 7</td><td class="weight-cell">70.9</td><td style="color:var(--color-accent)">+0.5</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 8</td><td class="weight-cell">71.2</td><td style="color:var(--color-accent)">+0.3</td><td style="color:var(--color-accent); font-size:0.75rem">En curso</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW: ENTRENAMIENTO ==================== -->
+    <div class="main-content" id="view-training">
+      <div class="page-header">
+        <div class="page-greeting">Entrenamiento 🏋️</div>
+        <div class="page-subheader">Semana 3 · Plan progresivo 8 semanas</div>
+      </div>
+
+      <div class="content-grid" style="margin-bottom: var(--space-6)">
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-4)">
+            <div class="card-title">Upper Body — Sesión A</div>
+            <span class="badge">Hoy</span>
+          </div>
+          <table class="workout-table">
+            <thead><tr><th>Ejercicio</th><th>Sets</th><th>Reps</th><th>Peso</th><th>Estado</th></tr></thead>
+            <tbody>
+              <tr><td>Press de banca</td><td>4</td><td>8</td><td class="weight-cell">65 kg</td><td class="status-done">✓ Hecho</td></tr>
+              <tr><td>Remo con barra</td><td>4</td><td>8</td><td class="weight-cell">60 kg</td><td class="status-done">✓ Hecho</td></tr>
+              <tr><td>Press militar</td><td>3</td><td>10</td><td class="weight-cell">40 kg</td><td class="status-pending">Pendiente</td></tr>
+              <tr><td>Curl de bíceps</td><td>3</td><td>12</td><td class="weight-cell">20 kg</td><td class="status-pending">Pendiente</td></tr>
+              <tr><td>Tríceps en polea</td><td>3</td><td>12</td><td class="weight-cell">25 kg</td><td class="status-pending">Pendiente</td></tr>
+            </tbody>
+          </table>
+          <div class="tip-box">💡 Semana 4: sube 2.5 kg en press de banca si completas los 4×8</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Lower Body — Sesión B</div>
+          <div style="font-size:0.75rem; color:var(--color-text-muted); margin-bottom:var(--space-4)">Próxima sesión: Jueves</div>
+          <table class="workout-table">
+            <thead><tr><th>Ejercicio</th><th>Sets</th><th>Reps</th><th>Peso</th></tr></thead>
+            <tbody>
+              <tr><td>Sentadilla</td><td>4</td><td>8</td><td class="weight-cell">80 kg</td></tr>
+              <tr><td>Peso muerto rumano</td><td>3</td><td>10</td><td class="weight-cell">70 kg</td></tr>
+              <tr><td>Prensa de piernas</td><td>3</td><td>12</td><td class="weight-cell">120 kg</td></tr>
+              <tr><td>Extensión de cuádríceps</td><td>3</td><td>15</td><td class="weight-cell">40 kg</td></tr>
+              <tr><td>Curl de isquiotibiales</td><td>3</td><td>15</td><td class="weight-cell">35 kg</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Weekly training plan -->
+      <div class="card">
+        <div class="card-title">Semana 3 — Distribución</div>
+        <div style="display:grid; grid-template-columns: repeat(7, 1fr); gap: var(--space-2); margin-top: var(--space-4)">
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-accent-glow); border-radius:var(--radius-sm); border:1px solid rgba(57,255,106,0.2)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">LUN</div>
+            <div style="font-size:0.75rem; color:var(--color-accent); font-weight:600">Upper A</div>
+            <div style="font-size:0.65rem; color:var(--color-text-muted)">✓</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--color-bg-border)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">MAR</div>
+            <div style="font-size:0.75rem; color:var(--color-text-secondary); font-weight:600">Descanso</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-accent-glow); border-radius:var(--radius-sm); border:1px solid rgba(57,255,106,0.2)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">MIÉ</div>
+            <div style="font-size:0.75rem; color:var(--color-accent); font-weight:600">Lower B</div>
+            <div style="font-size:0.65rem; color:var(--color-text-muted)">✓</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:rgba(57,255,106,0.08); border-radius:var(--radius-sm); border:1px solid rgba(57,255,106,0.3)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">JUE</div>
+            <div style="font-size:0.75rem; color:var(--color-accent); font-weight:600">Upper A</div>
+            <div style="font-size:0.65rem; color:var(--color-accent)">Hoy</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--color-bg-border)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">VIE</div>
+            <div style="font-size:0.75rem; color:var(--color-text-secondary); font-weight:600">Descanso</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--color-bg-border)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">SÁB</div>
+            <div style="font-size:0.75rem; color:var(--color-text-secondary); font-weight:600">Lower B</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--color-bg-border)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">DOM</div>
+            <div style="font-size:0.75rem; color:var(--color-text-secondary); font-weight:600">Descanso</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW: NUTRICIÓN ==================== -->
+    <div class="main-content" id="view-nutrition">
+      <div class="page-header">
+        <div class="page-greeting">Plan de nutrición 🍽️</div>
+        <div class="page-subheader">Semana 3 · Sin contar calorías — porciones visuales</div>
+      </div>
+
+      <div class="content-grid" style="margin-bottom: var(--space-6)">
+        <div class="card">
+          <div class="card-title">Hoy — Martes</div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌅</div>
+            <div>
+              <div class="meal-title">Desayuno (08:00)</div>
+              <div class="meal-desc">Avena con leche entera (2 puños) + 2 huevos revueltos + plátano grande</div>
+            </div>
+            <div class="meal-status done">✓</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-emoji">🥤</div>
+            <div>
+              <div class="meal-title">Post-entreno (12:15)</div>
+              <div class="meal-desc">Batido de proteína (1 shaker) + plátano</div>
+            </div>
+            <div class="meal-status done">✓</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌞</div>
+            <div>
+              <div class="meal-title">Comida (13:30)</div>
+              <div class="meal-desc">Arroz blanco (2 puños) + pollo a la plancha (1 palma) + verduras salteadas</div>
+            </div>
+            <div class="meal-status pending">Pdte</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌙</div>
+            <div>
+              <div class="meal-title">Cena (20:30)</div>
+              <div class="meal-desc">Tortilla de 3 huevos + 2 rebanadas de pan + fruta de temporada</div>
+            </div>
+            <div class="meal-status pending">Pdte</div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap: var(--space-4)">
+          <div class="card">
+            <div class="card-title">Guía de porciones</div>
+            <div style="display:flex; flex-direction:column; gap:var(--space-3); margin-top:var(--space-2)">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">🍗 Proteína</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">1 palma</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">🍚 Carbohidratos</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">2 puños</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">🥦 Verduras</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">2 puños</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">🥑 Grasas</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">1 pulgar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-metric">
+            <div class="highlight-label">Sin pesar. Sin apps.</div>
+            <div style="font-size:1rem; color:var(--color-text-primary); font-weight:600; margin-top:var(--space-2)">
+              Solo mira tu mano.<br>Ya tienes la medida.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weekly plan grid -->
+      <div class="card">
+        <div class="card-title">Plan de la semana</div>
+        <div style="overflow-x: auto; margin-top:var(--space-4)">
+          <table class="workout-table">
+            <thead>
+              <tr>
+                <th>Comida</th>
+                <th>Lunes</th>
+                <th>Martes</th>
+                <th>Miércoles</th>
+                <th>Jueves</th>
+                <th>Viernes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--color-text-muted)">🌅 Desayuno</td>
+                <td>Avena + huevos</td>
+                <td style="color:var(--color-accent)">Avena + huevos</td>
+                <td>Tostadas + aguacate</td>
+                <td>Avena + huevos</td>
+                <td>Yogur + granola</td>
+              </tr>
+              <tr>
+                <td style="color:var(--color-text-muted)">🌞 Comida</td>
+                <td>Arroz + pollo</td>
+                <td style="color:var(--color-accent)">Arroz + pollo</td>
+                <td>Pasta + carne</td>
+                <td>Arroz + salmón</td>
+                <td>Lentejas</td>
+              </tr>
+              <tr>
+                <td style="color:var(--color-text-muted)">🌙 Cena</td>
+                <td>Tortilla + pan</td>
+                <td style="color:var(--color-accent)">Tortilla + pan</td>
+                <td>Pollo + patata</td>
+                <td>Tortilla + pan</td>
+                <td>Pizza casera</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW: CONFIGURACIÓN ==================== -->
+    <div class="main-content" id="view-settings">
+      <div class="page-header">
+        <div class="page-greeting">Configuración ⚙️</div>
+        <div class="page-subheader">Datos del programa · Marcos</div>
+      </div>
+
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-title">Datos personales</div>
+          <div style="display:flex; flex-direction:column; gap: var(--space-4); margin-top:var(--space-2)">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-3) 0; border-bottom:1px solid var(--color-bg-border)">
+              <span style="font-size:0.875rem; color:var(--color-text-secondary)">Nombre</span>
+              <span style="font-family:var(--font-mono); font-size:0.875rem; color:var(--color-text-primary)">Marcos</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-3) 0; border-bottom:1px solid var(--color-bg-border)">
+              <span style="font-size:0.875rem; color:var(--color-text-secondary)">Edad</span>
+              <span style="font-family:var(--font-mono); font-size:0.875rem; color:var(--color-text-primary)">24 años</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-3) 0; border-bottom:1px solid var(--color-bg-border)">
+              <span style="font-size:0.875rem; color:var(--color-text-secondary)">Peso inicial</span>
+              <span style="font-family:var(--font-mono); font-size:0.875rem; color:var(--color-text-primary)">68.2 kg</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-3) 0; border-bottom:1px solid var(--color-bg-border)">
+              <span style="font-size:0.875rem; color:var(--color-text-secondary)">Peso objetivo</span>
+              <span style="font-family:var(--font-mono); font-size:0.875rem; color:var(--color-accent)">75 kg</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-3) 0">
+              <span style="font-size:0.875rem; color:var(--color-text-secondary)">Fecha de inicio</span>
+              <span style="font-family:var(--font-mono); font-size:0.875rem; color:var(--color-text-primary)">24 Abr 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Estado del programa</div>
+          <div style="margin-top:var(--space-2)">
+            <div class="progress-section">
+              <div class="progress-meta">
+                <span>Semanas completadas</span>
+                <span style="font-family:var(--font-mono); color:var(--color-accent)">3 / 8</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill" style="width:37%"></div></div>
+            </div>
+            <div style="margin-top:var(--space-6); display:flex; flex-direction:column; gap:var(--space-3)">
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">Sesiones completadas</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">18 / 48</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">Checks diarios</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">22 / 24</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">Tasa de adherencia</span>
+                <span style="font-family:var(--font-mono); color:var(--color-accent)">91.6%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>

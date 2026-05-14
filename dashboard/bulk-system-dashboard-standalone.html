@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk System — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+/* === DASHBOARD LAYOUT === */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #0A0A0A;
+  color: #F0F0F0;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --color-bg-primary: #0A0A0A;
+  --color-bg-secondary: #111111;
+  --color-bg-elevated: #161616;
+  --color-bg-border: #1E1E1E;
+  --color-accent: #39FF6A;
+  --color-accent-dim: #2BCC52;
+  --color-accent-glow: rgba(57, 255, 106, 0.15);
+  --color-text-primary: #F0F0F0;
+  --color-text-secondary: #888888;
+  --color-text-muted: #555555;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--color-bg-secondary);
+  border-right: 1px solid var(--color-bg-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
+  overflow-y: auto;
+}
+
+.sidebar-logo {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-bg-border);
+}
+
+.sidebar-logo span {
+  color: var(--color-accent);
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  padding: var(--space-3);
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-bg-border);
+}
+
+.sidebar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-accent-glow);
+  border: 1px solid rgba(57, 255, 106, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.sidebar-user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.sidebar-user-meta {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 150ms ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-item:hover {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+}
+
+.nav-item.active {
+  background: var(--color-accent-glow);
+  color: var(--color-accent);
+}
+
+.nav-icon {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.sidebar-footer {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-bg-border);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* === MAIN AREA === */
+.main {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--color-bg-primary);
+}
+
+.main-header {
+  position: sticky;
+  top: 0;
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-bg-border);
+  padding: var(--space-4) var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.main-header-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.main-header-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.main-content {
+  padding: var(--space-8);
+  display: none;
+}
+
+.main-content.active {
+  display: block;
+}
+
+/* === PAGE HEADER === */
+.page-header {
+  margin-bottom: var(--space-8);
+}
+
+.page-greeting {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+  letter-spacing: -0.01em;
+}
+
+.page-subheader {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* === METRIC CARDS === */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.metric-card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-bg-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  transition: all 200ms ease;
+}
+
+.metric-card:hover {
+  border-color: rgba(57, 255, 106, 0.2);
+}
+
+.metric-card-value {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.metric-card-label {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.metric-card-delta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  margin-top: var(--space-2);
+}
+
+/* === CONTENT GRID === */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.content-grid.thirds {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.content-grid.single {
+  grid-template-columns: 1fr;
+}
+
+/* === CARD === */
+.card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-bg-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-4);
+}
+
+/* === PROGRESS BAR === */
+.progress-section {
+  margin-bottom: var(--space-4);
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.progress-track {
+  height: 8px;
+  background: var(--color-bg-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2BCC52, #39FF6A);
+  border-radius: 999px;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === CHECKLIST === */
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px 0;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(30, 30, 30, 0.6);
+  transition: color 150ms ease;
+}
+
+.check-item:last-child {
+  border-bottom: none;
+}
+
+.check-item:hover {
+  color: var(--color-text-primary);
+}
+
+.check-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid var(--color-bg-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 150ms ease;
+}
+
+.check-item.done .check-box {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.check-item.done .check-box::after {
+  content: '✓';
+  font-size: 10px;
+  color: #000;
+  font-weight: 700;
+}
+
+.check-item.done .check-text {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+.check-time {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* === HIGHLIGHT METRIC === */
+.highlight-metric {
+  background: var(--color-bg-elevated);
+  border: 1px solid rgba(57, 255, 106, 0.2);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.highlight-label {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-2);
+}
+
+.highlight-value {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.highlight-sub {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+/* === CHART === */
+.chart-wrapper {
+  width: 100%;
+  height: 220px;
+  position: relative;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* === WORKOUT TABLE === */
+.workout-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.workout-table th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-bg-border);
+}
+
+.workout-table td {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  padding: 10px var(--space-3);
+  border-bottom: 1px solid rgba(30, 30, 30, 0.5);
+  transition: all 150ms ease;
+}
+
+.workout-table tr:last-child td { border-bottom: none; }
+
+.workout-table tr:hover td {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+}
+
+.weight-cell {
+  font-family: var(--font-mono);
+  color: var(--color-accent) !important;
+}
+
+.status-done { color: var(--color-accent) !important; font-size: 0.75rem; }
+.status-pending { color: var(--color-text-muted) !important; font-size: 0.75rem; }
+
+/* === MEAL CARDS === */
+.meal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-bg-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  transition: all 150ms ease;
+}
+
+.meal-item:last-child { margin-bottom: 0; }
+
+.meal-item:hover {
+  border-color: rgba(57, 255, 106, 0.1);
+}
+
+.meal-emoji { font-size: 1.5rem; flex-shrink: 0; }
+
+.meal-title {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.meal-desc {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.meal-status {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.meal-status.done { color: var(--color-accent); }
+.meal-status.pending { color: var(--color-text-muted); }
+
+/* === WEEK PROGRESS === */
+.week-days {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.day-dot {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-bg-border);
+  transition: background 300ms ease;
+}
+
+.day-dot.done { background: var(--color-accent); }
+.day-dot.today { background: var(--color-accent-dim); animation: pulse-dot 2s infinite; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* === BADGE === */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-accent-glow);
+  color: var(--color-accent);
+  border: 1px solid rgba(57, 255, 106, 0.2);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* === TIP BOX === */
+.tip-box {
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-4);
+  border-left: 2px solid var(--color-accent);
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--color-bg-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }
+
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============================================================
+       SIDEBAR
+  ============================================================ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">BULK <span>SYSTEM</span></div>
+
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">M</div>
+      <div>
+        <div class="sidebar-user-name">Marcos</div>
+        <div class="sidebar-user-meta">24 años · 71.2 kg</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-view="today">
+        <span class="nav-icon">🏠</span> Inicio
+      </button>
+      <button class="nav-item" data-view="today">
+        <span class="nav-icon">📅</span> Hoy
+      </button>
+      <button class="nav-item" data-view="progress">
+        <span class="nav-icon">📈</span> Progreso
+      </button>
+      <button class="nav-item" data-view="training">
+        <span class="nav-icon">🏋️</span> Entrenamiento
+      </button>
+      <button class="nav-item" data-view="nutrition">
+        <span class="nav-icon">🍽️</span> Nutrición
+      </button>
+      <button class="nav-item" data-view="settings">
+        <span class="nav-icon">⚙️</span> Configuración
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      Semana 3 de 8<br>
+      <span style="color: var(--color-accent)">████░░░░</span> 37%
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       MAIN AREA
+  ============================================================ -->
+  <main class="main">
+    <div class="main-header">
+      <div class="main-header-title" id="pageTitle">Hoy</div>
+      <div class="main-header-date">Martes, 13 de mayo de 2025 · Semana 3 · Día 4</div>
+    </div>
+
+    <!-- ==================== VIEW: HOY ==================== -->
+    <div class="main-content active" id="view-today">
+
+      <div class="page-header">
+        <div class="page-greeting">Buenos días, Marcos 👋</div>
+        <div class="page-subheader">Martes, 13 de mayo · Semana 3 · Día 4 de 7</div>
+      </div>
+
+      <!-- Quick metrics -->
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-card-value">71.2</div>
+          <div class="metric-card-label">Peso hoy (kg)</div>
+          <div class="metric-card-delta">+0.4 ▲ esta semana</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value">75</div>
+          <div class="metric-card-label">Objetivo (kg)</div>
+          <div class="metric-card-delta">−3.8 kg restante</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value" style="font-size:1.5rem">3 / 8</div>
+          <div class="metric-card-label">Semanas del programa</div>
+          <div class="metric-card-delta">████░░░░ 37%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value">12</div>
+          <div class="metric-card-label">Racha (días)</div>
+          <div class="metric-card-delta">🔥 Sigue así</div>
+        </div>
+      </div>
+
+      <!-- Progress + Checklist -->
+      <div class="content-grid" style="margin-bottom: var(--space-6)">
+        <div class="card">
+          <div class="card-title">Check de hoy</div>
+
+          <div class="progress-section">
+            <div class="progress-meta">
+              <span>Progreso del día</span>
+              <span id="checkProgress" style="color:var(--color-accent); font-family:var(--font-mono)">3 / 5 — 60%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="checkBar" style="width:60%"></div>
+            </div>
+          </div>
+
+          <div id="checklistToday">
+            <div class="check-item done" onclick="toggleCheckDash(this)">
+              <div class="check-box"></div>
+              <span class="check-text">Desayuno</span>
+              <span class="check-time">08:00</span>
+            </div>
+            <div class="check-item done" onclick="toggleCheckDash(this)">
+              <div class="check-box"></div>
+              <span class="check-text">Entrenamiento upper body</span>
+              <span class="check-time">11:30</span>
+            </div>
+            <div class="check-item done" onclick="toggleCheckDash(this)">
+              <div class="check-box"></div>
+              <span class="check-text">Batido post-entreno</span>
+              <span class="check-time">12:15</span>
+            </div>
+            <div class="check-item" onclick="toggleCheckDash(this)">
+              <div class="check-box"></div>
+              <span class="check-text">Comida principal</span>
+              <span class="check-time">13:30</span>
+            </div>
+            <div class="check-item" onclick="toggleCheckDash(this)">
+              <div class="check-box"></div>
+              <span class="check-text">Cena</span>
+              <span class="check-time">20:30</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap: var(--space-4)">
+          <div class="highlight-metric">
+            <div class="highlight-label">Esta semana</div>
+            <div class="highlight-value">+0.4 kg 📈</div>
+            <div class="highlight-sub">Meta: +0.5 kg/semana · Vas por buen camino</div>
+          </div>
+
+          <div class="highlight-metric" style="border-color:rgba(255,184,48,0.2)">
+            <div class="highlight-label">Racha actual</div>
+            <div class="highlight-value" style="color: #FFB830">🔥 12 días</div>
+            <div class="highlight-sub">Tu mejor racha: 14 días</div>
+          </div>
+
+          <div class="card" style="flex:1">
+            <div class="card-title">Días de la semana</div>
+            <div class="week-days">
+              <div class="day-dot done" title="Lunes"></div>
+              <div class="day-dot done" title="Martes"></div>
+              <div class="day-dot done" title="Miércoles"></div>
+              <div class="day-dot today" title="Jueves"></div>
+              <div class="day-dot" title="Viernes"></div>
+              <div class="day-dot" title="Sábado"></div>
+              <div class="day-dot" title="Domingo"></div>
+            </div>
+            <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top: var(--space-3)">
+              Lun · Mar · Mié · <span style="color:var(--color-accent)">Jue</span> · Vie · Sáb · Dom
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Today's workout & meals preview -->
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-title">Entrenamiento de hoy</div>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: var(--space-4)">
+            <div>
+              <div style="font-size:1rem; font-weight:700; font-family:var(--font-display); color:var(--color-text-primary)">Upper Body — Sesión A</div>
+              <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:2px">5 ejercicios · ~45 min</div>
+            </div>
+            <span class="badge">Hoy</span>
+          </div>
+          <table class="workout-table">
+            <thead><tr><th>Ejercicio</th><th>Sets×Reps</th><th>Peso</th><th>Estado</th></tr></thead>
+            <tbody>
+              <tr><td>Press de banca</td><td>4×8</td><td class="weight-cell">65 kg</td><td class="status-done">✓ Hecho</td></tr>
+              <tr><td>Remo con barra</td><td>4×8</td><td class="weight-cell">60 kg</td><td class="status-done">✓ Hecho</td></tr>
+              <tr><td>Press militar</td><td>3×10</td><td class="weight-cell">40 kg</td><td class="status-pending">Pendiente</td></tr>
+              <tr><td>Curl de bíceps</td><td>3×12</td><td class="weight-cell">20 kg</td><td class="status-pending">Pendiente</td></tr>
+              <tr><td>Tríceps en polea</td><td>3×12</td><td class="weight-cell">25 kg</td><td class="status-pending">Pendiente</td></tr>
+            </tbody>
+          </table>
+          <div class="tip-box">💡 Semana 4: +2.5 kg en press de banca si completas todos los sets</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Comidas de hoy</div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌅</div>
+            <div>
+              <div class="meal-title">Desayuno (08:00)</div>
+              <div class="meal-desc">Avena con leche + 2 huevos + plátano</div>
+            </div>
+            <div class="meal-status done">✓ Hecho</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌞</div>
+            <div>
+              <div class="meal-title">Comida (13:30)</div>
+              <div class="meal-desc">Arroz + pollo + verduras salteadas</div>
+            </div>
+            <div class="meal-status pending">Pendiente</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌙</div>
+            <div>
+              <div class="meal-title">Cena (20:30)</div>
+              <div class="meal-desc">Tortilla de 3 huevos + pan + fruta</div>
+            </div>
+            <div class="meal-status pending">Pendiente</div>
+          </div>
+          <div class="tip-box">🍽️ Porciones visuales — una palma de proteína, dos puños de carbohidrato</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW: PROGRESO ==================== -->
+    <div class="main-content" id="view-progress">
+      <div class="page-header">
+        <div class="page-greeting">Tu progreso 📈</div>
+        <div class="page-subheader">Semanas 1–8 · Objetivo: 75 kg</div>
+      </div>
+
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-card-value">+3.0</div>
+          <div class="metric-card-label">kg ganados</div>
+          <div class="metric-card-delta">Desde el inicio</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value">+0.4</div>
+          <div class="metric-card-label">kg esta semana</div>
+          <div class="metric-card-delta">Meta: +0.5/sem</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value">3.8</div>
+          <div class="metric-card-label">kg para el objetivo</div>
+          <div class="metric-card-delta">~8 semanas</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-value">37%</div>
+          <div class="metric-card-label">completado</div>
+          <div class="metric-card-delta">Semana 3 de 8</div>
+        </div>
+      </div>
+
+      <div class="card content-grid single" style="margin-bottom: var(--space-6)">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: var(--space-6)">
+            <div class="card-title">Evolución del peso</div>
+            <div style="display:flex; gap:var(--space-6)">
+              <div style="text-align:right">
+                <div style="font-family:var(--font-mono); font-size:1.25rem; color:var(--color-accent)">+3.0 kg</div>
+                <div style="font-size:0.75rem; color:var(--color-text-muted)">ganado</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-family:var(--font-mono); font-size:1.25rem; color:var(--color-text-primary)">71.2</div>
+                <div style="font-size:0.75rem; color:var(--color-text-muted)">kg actuales</div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <svg id="dashboardWeightChart" class="chart-svg" viewBox="0 0 900 220" preserveAspectRatio="none"></svg>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding: 0 12px; margin-top: var(--space-2)">
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S1</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S2</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S3</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S4</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S5</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S6</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S7</span>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-muted)">S8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weekly breakdown -->
+      <div class="card">
+        <div class="card-title">Historial semanal</div>
+        <table class="workout-table">
+          <thead>
+            <tr>
+              <th>Semana</th>
+              <th>Peso (kg)</th>
+              <th>Cambio</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Semana 1</td><td class="weight-cell">68.2</td><td>—</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 2</td><td class="weight-cell">68.6</td><td style="color:var(--color-accent)">+0.4</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 3</td><td class="weight-cell">69.1</td><td style="color:var(--color-accent)">+0.5</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 4</td><td class="weight-cell">69.5</td><td style="color:var(--color-accent)">+0.4</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 5</td><td class="weight-cell">70.0</td><td style="color:var(--color-accent)">+0.5</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 6</td><td class="weight-cell">70.4</td><td style="color:var(--color-accent)">+0.4</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 7</td><td class="weight-cell">70.9</td><td style="color:var(--color-accent)">+0.5</td><td class="status-done">✓</td></tr>
+            <tr><td>Semana 8</td><td class="weight-cell">71.2</td><td style="color:var(--color-accent)">+0.3</td><td style="color:var(--color-accent); font-size:0.75rem">En curso</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW: ENTRENAMIENTO ==================== -->
+    <div class="main-content" id="view-training">
+      <div class="page-header">
+        <div class="page-greeting">Entrenamiento 🏋️</div>
+        <div class="page-subheader">Semana 3 · Plan progresivo 8 semanas</div>
+      </div>
+
+      <div class="content-grid" style="margin-bottom: var(--space-6)">
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-4)">
+            <div class="card-title">Upper Body — Sesión A</div>
+            <span class="badge">Hoy</span>
+          </div>
+          <table class="workout-table">
+            <thead><tr><th>Ejercicio</th><th>Sets</th><th>Reps</th><th>Peso</th><th>Estado</th></tr></thead>
+            <tbody>
+              <tr><td>Press de banca</td><td>4</td><td>8</td><td class="weight-cell">65 kg</td><td class="status-done">✓ Hecho</td></tr>
+              <tr><td>Remo con barra</td><td>4</td><td>8</td><td class="weight-cell">60 kg</td><td class="status-done">✓ Hecho</td></tr>
+              <tr><td>Press militar</td><td>3</td><td>10</td><td class="weight-cell">40 kg</td><td class="status-pending">Pendiente</td></tr>
+              <tr><td>Curl de bíceps</td><td>3</td><td>12</td><td class="weight-cell">20 kg</td><td class="status-pending">Pendiente</td></tr>
+              <tr><td>Tríceps en polea</td><td>3</td><td>12</td><td class="weight-cell">25 kg</td><td class="status-pending">Pendiente</td></tr>
+            </tbody>
+          </table>
+          <div class="tip-box">💡 Semana 4: sube 2.5 kg en press de banca si completas los 4×8</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Lower Body — Sesión B</div>
+          <div style="font-size:0.75rem; color:var(--color-text-muted); margin-bottom:var(--space-4)">Próxima sesión: Jueves</div>
+          <table class="workout-table">
+            <thead><tr><th>Ejercicio</th><th>Sets</th><th>Reps</th><th>Peso</th></tr></thead>
+            <tbody>
+              <tr><td>Sentadilla</td><td>4</td><td>8</td><td class="weight-cell">80 kg</td></tr>
+              <tr><td>Peso muerto rumano</td><td>3</td><td>10</td><td class="weight-cell">70 kg</td></tr>
+              <tr><td>Prensa de piernas</td><td>3</td><td>12</td><td class="weight-cell">120 kg</td></tr>
+              <tr><td>Extensión de cuádríceps</td><td>3</td><td>15</td><td class="weight-cell">40 kg</td></tr>
+              <tr><td>Curl de isquiotibiales</td><td>3</td><td>15</td><td class="weight-cell">35 kg</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Weekly training plan -->
+      <div class="card">
+        <div class="card-title">Semana 3 — Distribución</div>
+        <div style="display:grid; grid-template-columns: repeat(7, 1fr); gap: var(--space-2); margin-top: var(--space-4)">
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-accent-glow); border-radius:var(--radius-sm); border:1px solid rgba(57,255,106,0.2)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">LUN</div>
+            <div style="font-size:0.75rem; color:var(--color-accent); font-weight:600">Upper A</div>
+            <div style="font-size:0.65rem; color:var(--color-text-muted)">✓</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--color-bg-border)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">MAR</div>
+            <div style="font-size:0.75rem; color:var(--color-text-secondary); font-weight:600">Descanso</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-accent-glow); border-radius:var(--radius-sm); border:1px solid rgba(57,255,106,0.2)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">MIÉ</div>
+            <div style="font-size:0.75rem; color:var(--color-accent); font-weight:600">Lower B</div>
+            <div style="font-size:0.65rem; color:var(--color-text-muted)">✓</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:rgba(57,255,106,0.08); border-radius:var(--radius-sm); border:1px solid rgba(57,255,106,0.3)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">JUE</div>
+            <div style="font-size:0.75rem; color:var(--color-accent); font-weight:600">Upper A</div>
+            <div style="font-size:0.65rem; color:var(--color-accent)">Hoy</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--color-bg-border)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">VIE</div>
+            <div style="font-size:0.75rem; color:var(--color-text-secondary); font-weight:600">Descanso</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--color-bg-border)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">SÁB</div>
+            <div style="font-size:0.75rem; color:var(--color-text-secondary); font-weight:600">Lower B</div>
+          </div>
+          <div style="text-align:center; padding: var(--space-3); background:var(--color-bg-elevated); border-radius:var(--radius-sm); border:1px solid var(--color-bg-border)">
+            <div style="font-size:0.7rem; color:var(--color-text-muted); margin-bottom:4px; font-family:var(--font-mono)">DOM</div>
+            <div style="font-size:0.75rem; color:var(--color-text-secondary); font-weight:600">Descanso</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW: NUTRICIÓN ==================== -->
+    <div class="main-content" id="view-nutrition">
+      <div class="page-header">
+        <div class="page-greeting">Plan de nutrición 🍽️</div>
+        <div class="page-subheader">Semana 3 · Sin contar calorías — porciones visuales</div>
+      </div>
+
+      <div class="content-grid" style="margin-bottom: var(--space-6)">
+        <div class="card">
+          <div class="card-title">Hoy — Martes</div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌅</div>
+            <div>
+              <div class="meal-title">Desayuno (08:00)</div>
+              <div class="meal-desc">Avena con leche entera (2 puños) + 2 huevos revueltos + plátano grande</div>
+            </div>
+            <div class="meal-status done">✓</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-emoji">🥤</div>
+            <div>
+              <div class="meal-title">Post-entreno (12:15)</div>
+              <div class="meal-desc">Batido de proteína (1 shaker) + plátano</div>
+            </div>
+            <div class="meal-status done">✓</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌞</div>
+            <div>
+              <div class="meal-title">Comida (13:30)</div>
+              <div class="meal-desc">Arroz blanco (2 puños) + pollo a la plancha (1 palma) + verduras salteadas</div>
+            </div>
+            <div class="meal-status pending">Pdte</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-emoji">🌙</div>
+            <div>
+              <div class="meal-title">Cena (20:30)</div>
+              <div class="meal-desc">Tortilla de 3 huevos + 2 rebanadas de pan + fruta de temporada</div>
+            </div>
+            <div class="meal-status pending">Pdte</div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap: var(--space-4)">
+          <div class="card">
+            <div class="card-title">Guía de porciones</div>
+            <div style="display:flex; flex-direction:column; gap:var(--space-3); margin-top:var(--space-2)">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">🍗 Proteína</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">1 palma</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">🍚 Carbohidratos</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">2 puños</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">🥦 Verduras</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">2 puños</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">🥑 Grasas</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">1 pulgar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-metric">
+            <div class="highlight-label">Sin pesar. Sin apps.</div>
+            <div style="font-size:1rem; color:var(--color-text-primary); font-weight:600; margin-top:var(--space-2)">
+              Solo mira tu mano.<br>Ya tienes la medida.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weekly plan grid -->
+      <div class="card">
+        <div class="card-title">Plan de la semana</div>
+        <div style="overflow-x: auto; margin-top:var(--space-4)">
+          <table class="workout-table">
+            <thead>
+              <tr>
+                <th>Comida</th>
+                <th>Lunes</th>
+                <th>Martes</th>
+                <th>Miércoles</th>
+                <th>Jueves</th>
+                <th>Viernes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--color-text-muted)">🌅 Desayuno</td>
+                <td>Avena + huevos</td>
+                <td style="color:var(--color-accent)">Avena + huevos</td>
+                <td>Tostadas + aguacate</td>
+                <td>Avena + huevos</td>
+                <td>Yogur + granola</td>
+              </tr>
+              <tr>
+                <td style="color:var(--color-text-muted)">🌞 Comida</td>
+                <td>Arroz + pollo</td>
+                <td style="color:var(--color-accent)">Arroz + pollo</td>
+                <td>Pasta + carne</td>
+                <td>Arroz + salmón</td>
+                <td>Lentejas</td>
+              </tr>
+              <tr>
+                <td style="color:var(--color-text-muted)">🌙 Cena</td>
+                <td>Tortilla + pan</td>
+                <td style="color:var(--color-accent)">Tortilla + pan</td>
+                <td>Pollo + patata</td>
+                <td>Tortilla + pan</td>
+                <td>Pizza casera</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW: CONFIGURACIÓN ==================== -->
+    <div class="main-content" id="view-settings">
+      <div class="page-header">
+        <div class="page-greeting">Configuración ⚙️</div>
+        <div class="page-subheader">Datos del programa · Marcos</div>
+      </div>
+
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-title">Datos personales</div>
+          <div style="display:flex; flex-direction:column; gap: var(--space-4); margin-top:var(--space-2)">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-3) 0; border-bottom:1px solid var(--color-bg-border)">
+              <span style="font-size:0.875rem; color:var(--color-text-secondary)">Nombre</span>
+              <span style="font-family:var(--font-mono); font-size:0.875rem; color:var(--color-text-primary)">Marcos</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-3) 0; border-bottom:1px solid var(--color-bg-border)">
+              <span style="font-size:0.875rem; color:var(--color-text-secondary)">Edad</span>
+              <span style="font-family:var(--font-mono); font-size:0.875rem; color:var(--color-text-primary)">24 años</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-3) 0; border-bottom:1px solid var(--color-bg-border)">
+              <span style="font-size:0.875rem; color:var(--color-text-secondary)">Peso inicial</span>
+              <span style="font-family:var(--font-mono); font-size:0.875rem; color:var(--color-text-primary)">68.2 kg</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-3) 0; border-bottom:1px solid var(--color-bg-border)">
+              <span style="font-size:0.875rem; color:var(--color-text-secondary)">Peso objetivo</span>
+              <span style="font-family:var(--font-mono); font-size:0.875rem; color:var(--color-accent)">75 kg</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: var(--space-3) 0">
+              <span style="font-size:0.875rem; color:var(--color-text-secondary)">Fecha de inicio</span>
+              <span style="font-family:var(--font-mono); font-size:0.875rem; color:var(--color-text-primary)">24 Abr 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Estado del programa</div>
+          <div style="margin-top:var(--space-2)">
+            <div class="progress-section">
+              <div class="progress-meta">
+                <span>Semanas completadas</span>
+                <span style="font-family:var(--font-mono); color:var(--color-accent)">3 / 8</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill" style="width:37%"></div></div>
+            </div>
+            <div style="margin-top:var(--space-6); display:flex; flex-direction:column; gap:var(--space-3)">
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">Sesiones completadas</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">18 / 48</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">Checks diarios</span>
+                <span style="font-family:var(--font-mono); color:var(--color-text-primary)">22 / 24</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem">
+                <span style="color:var(--color-text-secondary)">Tasa de adherencia</span>
+                <span style="font-family:var(--font-mono); color:var(--color-accent)">91.6%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+  <script>
+'use strict';
+
+// === NAVIGATION ===
+const initNav = () => {
+  const navItems = document.querySelectorAll('.nav-item');
+  const views = document.querySelectorAll('.main-content');
+  const pageTitle = document.getElementById('pageTitle');
+
+  const titles = {
+    today: 'Hoy',
+    progress: 'Progreso',
+    training: 'Entrenamiento',
+    nutrition: 'Nutrición',
+    settings: 'Configuración'
+  };
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const view = item.dataset.view;
+      if (!view) return;
+
+      navItems.forEach(n => n.classList.remove('active'));
+      item.classList.add('active');
+
+      views.forEach(v => v.classList.remove('active'));
+      const target = document.getElementById(`view-${view}`);
+      if (target) target.classList.add('active');
+
+      if (pageTitle) pageTitle.textContent = titles[view] || 'Dashboard';
+
+      if (view === 'progress') {
+        setTimeout(drawProgressChart, 100);
+      }
+    });
+  });
+};
+
+// === INTERACTIVE CHECKLIST ===
+window.toggleCheckDash = (item) => {
+  item.classList.toggle('done');
+  syncProgress();
+};
+
+const syncProgress = () => {
+  const items = document.querySelectorAll('#checklistToday .check-item');
+  const done = document.querySelectorAll('#checklistToday .check-item.done');
+  if (!items.length) return;
+
+  const pct = Math.round((done.length / items.length) * 100);
+  const bar = document.getElementById('checkBar');
+  const label = document.getElementById('checkProgress');
+  if (bar) bar.style.width = `${pct}%`;
+  if (label) label.textContent = `${done.length} / ${items.length} — ${pct}%`;
+};
+
+// === WEIGHT CHART ===
+const drawProgressChart = () => {
+  const svg = document.getElementById('dashboardWeightChart');
+  if (!svg || svg.dataset.drawn) return;
+  svg.dataset.drawn = 'true';
+
+  const weights = [68.2, 68.6, 69.1, 69.5, 70.0, 70.4, 70.9, 71.2];
+  const target = 75.0;
+  const W = 900;
+  const H = 220;
+  const padX = 24;
+  const padY = 24;
+  const chartW = W - padX * 2;
+  const chartH = H - padY * 2;
+
+  const minW = 67.5;
+  const maxW = 76;
+  const rangeW = maxW - minW;
+
+  const toX = (i) => padX + (i / (weights.length - 1)) * chartW;
+  const toY = (w) => padY + chartH - ((w - minW) / rangeW) * chartH;
+
+  const points = weights.map((w, i) => [toX(i), toY(w)]);
+
+  const smoothPath = (pts) => {
+    let d = `M ${pts[0][0]},${pts[0][1]}`;
+    for (let i = 1; i < pts.length; i++) {
+      const cpx = (pts[i - 1][0] + pts[i][0]) / 2;
+      d += ` C ${cpx},${pts[i - 1][1]} ${cpx},${pts[i][1]} ${pts[i][0]},${pts[i][1]}`;
+    }
+    return d;
+  };
+
+  const linePath = smoothPath(points);
+  const areaPath = linePath
+    + ` L ${points[points.length - 1][0]},${H - padY}`
+    + ` L ${points[0][0]},${H - padY} Z`;
+
+  const ns = 'http://www.w3.org/2000/svg';
+
+  // Defs
+  const defs = document.createElementNS(ns, 'defs');
+  const grad = document.createElementNS(ns, 'linearGradient');
+  grad.setAttribute('id', 'dashChartGrad');
+  grad.setAttribute('x1', '0'); grad.setAttribute('y1', '0');
+  grad.setAttribute('x2', '0'); grad.setAttribute('y2', '1');
+  const s1 = document.createElementNS(ns, 'stop');
+  s1.setAttribute('offset', '0%'); s1.setAttribute('stop-color', '#39FF6A'); s1.setAttribute('stop-opacity', '0.3');
+  const s2 = document.createElementNS(ns, 'stop');
+  s2.setAttribute('offset', '100%'); s2.setAttribute('stop-color', '#39FF6A'); s2.setAttribute('stop-opacity', '0');
+  grad.appendChild(s1); grad.appendChild(s2); defs.appendChild(grad); svg.appendChild(defs);
+
+  // Horizontal grid lines
+  for (let i = 0; i <= 4; i++) {
+    const y = padY + (chartH / 4) * i;
+    const gl = document.createElementNS(ns, 'line');
+    gl.setAttribute('x1', padX); gl.setAttribute('x2', W - padX);
+    gl.setAttribute('y1', y); gl.setAttribute('y2', y);
+    gl.setAttribute('stroke', 'rgba(255,255,255,0.04)'); gl.setAttribute('stroke-width', '1');
+    svg.appendChild(gl);
+  }
+
+  // Target line
+  const targetY = toY(target);
+  const tl = document.createElementNS(ns, 'line');
+  tl.setAttribute('x1', padX); tl.setAttribute('x2', W - padX);
+  tl.setAttribute('y1', targetY); tl.setAttribute('y2', targetY);
+  tl.setAttribute('stroke', 'rgba(57,255,106,0.25)');
+  tl.setAttribute('stroke-width', '1.5');
+  tl.setAttribute('stroke-dasharray', '8,5');
+  svg.appendChild(tl);
+
+  const tText = document.createElementNS(ns, 'text');
+  tText.setAttribute('x', W - padX + 4); tText.setAttribute('y', targetY + 4);
+  tText.setAttribute('fill', 'rgba(57,255,106,0.4)');
+  tText.setAttribute('font-size', '11'); tText.setAttribute('font-family', 'JetBrains Mono, monospace');
+  tText.textContent = `${target} kg`;
+  svg.appendChild(tText);
+
+  // Area
+  const area = document.createElementNS(ns, 'path');
+  area.setAttribute('d', areaPath);
+  area.setAttribute('fill', 'url(#dashChartGrad)');
+  svg.appendChild(area);
+
+  // Line
+  const line = document.createElementNS(ns, 'path');
+  line.setAttribute('d', linePath);
+  line.setAttribute('fill', 'none');
+  line.setAttribute('stroke', '#39FF6A');
+  line.setAttribute('stroke-width', '2.5');
+  line.setAttribute('stroke-linecap', 'round');
+
+  const len = 1200;
+  line.setAttribute('stroke-dasharray', len);
+  line.setAttribute('stroke-dashoffset', len);
+  line.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(0.16, 1, 0.3, 1)';
+  svg.appendChild(line);
+
+  // Tooltip
+  const tooltip = document.createElement('div');
+  Object.assign(tooltip.style, {
+    position: 'absolute', background: '#161616', border: '1px solid #1E1E1E',
+    borderRadius: '8px', padding: '6px 10px', fontFamily: "'JetBrains Mono', monospace",
+    fontSize: '12px', color: '#39FF6A', pointerEvents: 'none', opacity: '0',
+    transition: 'opacity 150ms ease', whiteSpace: 'nowrap', zIndex: '10'
+  });
+  svg.parentElement.style.position = 'relative';
+  svg.parentElement.appendChild(tooltip);
+
+  // Dots
+  points.forEach(([x, y], i) => {
+    const circle = document.createElementNS(ns, 'circle');
+    circle.setAttribute('cx', x); circle.setAttribute('cy', y);
+    circle.setAttribute('r', '5');
+    circle.setAttribute('fill', '#39FF6A');
+    circle.setAttribute('stroke', '#0A0A0A'); circle.setAttribute('stroke-width', '2');
+    circle.style.cursor = 'pointer';
+    circle.style.opacity = '0';
+    circle.style.transition = `opacity 200ms ease ${0.8 + i * 0.1}s`;
+
+    circle.addEventListener('mouseenter', () => {
+      const rect = svg.getBoundingClientRect();
+      const pRect = svg.parentElement.getBoundingClientRect();
+      const sx = (x / W) * rect.width;
+      const sy = (y / H) * rect.height;
+      tooltip.textContent = `S${i + 1}: ${weights[i]} kg`;
+      tooltip.style.left = `${rect.left - pRect.left + sx - 40}px`;
+      tooltip.style.top = `${rect.top - pRect.top + sy - 40}px`;
+      tooltip.style.opacity = '1';
+    });
+
+    circle.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
+    svg.appendChild(circle);
+    setTimeout(() => { circle.style.opacity = '1'; }, (0.8 + i * 0.1) * 1000);
+  });
+
+  requestAnimationFrame(() => {
+    setTimeout(() => { line.style.strokeDashoffset = '0'; }, 50);
+  });
+};
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  initNav();
+  // Animate initial progress bar
+  const bar = document.getElementById('checkBar');
+  if (bar) {
+    bar.style.width = '0%';
+    setTimeout(() => {
+      bar.style.transition = 'width 1s cubic-bezier(0.16, 1, 0.3, 1)';
+      bar.style.width = '60%';
+    }, 200);
+  }
+});
+
+  </script>
+</body>
+</html>
